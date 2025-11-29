@@ -1,3 +1,10 @@
+> ⚗️ **Research Repository**
+>
+> This is an experimental/research repository. Code here is exploratory and not production-ready.
+> For production systems, see [BlackRoad-OS](https://github.com/BlackRoad-OS).
+
+---
+
 # BlackStream
 
 BlackStream is a comprehensive streaming aggregation platform that solves the modern entertainment discovery problem. This app serves as a single interface for users to discover, track, and get intelligent recommendations across all their streaming services, eliminating platform fragmentation and decision fatigue.
