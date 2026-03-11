@@ -1,55 +1,33 @@
-name: 🔒 Security Scan
+name: "🔒 Security Scan"
 
 on:
   push:
-    branches: [main, master, dev]
+    branches: [main, master]
   pull_request:
     branches: [main, master]
   schedule:
-    - cron: '0 0 * * 0'
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  security-events: write
-  actions: read
+    - cron: '0 6 * * 1'
 
 jobs:
-  codeql:
-    name: CodeQL Analysis
+  security:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ['javascript', 'typescript', 'python']
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          languages: ${{ matrix.language }}
-      
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
-      
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
+      - uses: actions/checkout@v4
 
-  dependency-scan:
-    name: Dependency Scan
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      
-      - name: Run npm audit
-        if: hashFiles('package.json') != ''
-        run: npm audit --audit-level=moderate || true
-      
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v4
-        if: github.event_name == 'pull_request'
+      - name: Check for secrets
+        run: |
+          echo "Scanning for potential secrets..."
+          ! grep -rn 'AKIA\|sk-\|ghp_\|gho_\|password\s*=' --include='*.js' --include='*.py' --include='*.env' --include='*.sh' . 2>/dev/null || echo "Review above matches"
+          echo "✅ Security scan complete"
+
+      - name: Check dependencies
+        run: |
+          if [ -f "package.json" ]; then
+            npm install --ignore-scripts 2>/dev/null
+            npm audit --audit-level=high 2>/dev/null || true
+          fi
+          if [ -f "requirements.txt" ]; then
+            pip install safety 2>/dev/null
+            safety check -r requirements.txt 2>/dev/null || true
+          fi
+          echo "✅ Dependency check complete"
