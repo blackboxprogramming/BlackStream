@@ -1,0 +1,14 @@
+{
+  "name": "sync-service",
+  "version": "0.1.0",
+  "description": "Watch progress synchronization service for BlackStream",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

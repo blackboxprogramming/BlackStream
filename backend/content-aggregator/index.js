@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
 
 app.use(cors());
 app.use(express.json());
 
-// Mock streaming content catalog
+// Unified streaming catalog aggregated from multiple platforms
 const catalog = [
   { id: 1, title: 'The Office', genre: 'Comedy', platform: 'Peacock', year: 2005, rating: 9.0 },
   { id: 2, title: 'Stranger Things', genre: 'Sci-Fi', platform: 'Netflix', year: 2016, rating: 8.7 },
@@ -26,34 +26,25 @@ const catalog = [
 ];
 
 app.get('/', (req, res) => {
-  res.json({ service: 'BlackStream API Gateway', status: 'ok', version: '0.1.0' });
+  res.json({ service: 'BlackStream Content Aggregator', status: 'ok', version: '0.1.0' });
 });
 
-app.get('/search', (req, res) => {
-  const { q, genre, platform } = req.query;
-  let results = catalog;
+// Return the full unified catalog
+app.get('/catalog', (req, res) => {
+  const platforms = [...new Set(catalog.map((item) => item.platform))];
+  const genres = [...new Set(catalog.map((item) => item.genre))];
+  res.json({ total: catalog.length, platforms, genres, catalog });
+});
 
-  if (q) {
-    const query = q.toLowerCase();
-    results = results.filter(
-      (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.genre.toLowerCase().includes(query) ||
-        item.platform.toLowerCase().includes(query)
-    );
+// Return a single title by id
+app.get('/catalog/:id', (req, res) => {
+  const item = catalog.find((c) => c.id === parseInt(req.params.id, 10));
+  if (!item) {
+    return res.status(404).json({ error: 'Title not found' });
   }
-
-  if (genre) {
-    results = results.filter((item) => item.genre.toLowerCase() === genre.toLowerCase());
-  }
-
-  if (platform) {
-    results = results.filter((item) => item.platform.toLowerCase() === platform.toLowerCase());
-  }
-
-  res.json({ query: q || '', total: results.length, results });
+  res.json(item);
 });
 
 app.listen(port, () => {
-  console.log(`API Gateway listening on port ${port}`);
+  console.log(`Content Aggregator listening on port ${port}`);
 });
