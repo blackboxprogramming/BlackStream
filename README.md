@@ -1,6 +1,12 @@
 # BlackStream
 
-Streaming aggregation platform — a single interface for discovering and tracking content across multiple streaming services.
+[![CI](https://github.com/blackboxprogramming/BlackStream/actions/workflows/ci.yml/badge.svg)](https://github.com/blackboxprogramming/BlackStream/actions/workflows/ci.yml)
+[![Node.js](https://img.shields.io/badge/node-20%2B-339933.svg)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/express-4.x-000000.svg)](https://expressjs.com)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Microservices](https://img.shields.io/badge/architecture-microservices-FF6B2B.svg)](https://blackroad.io)
+
+> **Streaming aggregation platform with 5 microservices** — API gateway, content aggregator, recommendation engine (collaborative filtering), sync service, and user auth with crypto password hashing.
 
 ## Architecture
 
