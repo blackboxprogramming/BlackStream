@@ -103,3 +103,11 @@ cd frontend/web-app && npm test
 ## License
 
 Copyright 2026 BlackRoad OS, Inc. All rights reserved.
+
+## Related Projects
+
+| Project | Description |
+|---------|-------------|
+| [BlackRoad App Store](https://github.com/blackboxprogramming/blackroad-app-store) | Application marketplace |
+| [BlackRoad Apps](https://github.com/blackboxprogramming/blackroad-apps) | Web application suite |
+| [BlackRoad Web](https://github.com/blackboxprogramming/blackroad-web) | Web platform and services |
