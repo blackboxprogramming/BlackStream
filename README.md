@@ -1,113 +1,74 @@
+> ⚗️ **Research Repository**
+>
+> This is an experimental/research repository. Code here is exploratory and not production-ready.
+> For production systems, see [BlackRoad-OS](https://github.com/BlackRoad-OS).
+
+---
+
 # BlackStream
 
-[![CI](https://github.com/blackboxprogramming/BlackStream/actions/workflows/ci.yml/badge.svg)](https://github.com/blackboxprogramming/BlackStream/actions/workflows/ci.yml)
-[![Node.js](https://img.shields.io/badge/node-20%2B-339933.svg)](https://nodejs.org)
-[![Express](https://img.shields.io/badge/express-4.x-000000.svg)](https://expressjs.com)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Microservices](https://img.shields.io/badge/architecture-microservices-FF6B2B.svg)](https://blackroad.io)
+BlackStream is a comprehensive streaming aggregation platform that solves the modern entertainment discovery problem. This app serves as a single interface for users to discover, track, and get intelligent recommendations across all their streaming services, eliminating platform fragmentation and decision fatigue.
 
-> **Streaming aggregation platform with 5 microservices** — API gateway, content aggregator, recommendation engine (collaborative filtering), sync service, and user auth with crypto password hashing.
-
-## Architecture
+## Project Structure
 
 ```
-frontend/
-  web-app/                    # React web application (search UI)
-backend/
-  api-gateway/                # Express API (port 4000) — search and routing
-  recommendation-engine/      # Content recommendations (port 4000 by default)
-  content-aggregator/         # Cross-platform catalog aggregation (port 4001)
-  sync-service/               # Watch progress synchronization (port 4003)
-  user-service/               # Authentication and profiles (port 4002)
+BlackStream/
+├── frontend/            # Client-side applications (web, mobile)
+│   ├── web-app/        # React web application
+│   ├── mobile-ios/     # React Native iOS app (placeholder)
+│   ├── mobile-android/ # React Native Android app (placeholder)
+│   └── shared-components/ # Shared UI components and utilities
+├── backend/             # Server-side microservices
+│   ├── api-gateway/    # Entry point for all client requests (Express)
+│   ├── recommendation-engine/ # ML recommendations (placeholder)
+│   ├── content-aggregator/    # Aggregates catalogs across platforms (placeholder)
+│   ├── sync-service/   # Synchronisation and co-watching (placeholder)
+│   └── user-service/   # Authentication and user profiles (placeholder)
+├── data/                # Database schemas, migrations, and seed data
+│   ├── schemas/
+│   ├── migrations/
+│   └── seed-data/
+├── infrastructure/      # Deployment scripts
+│   ├── docker/
+│   ├── kubernetes/
+│   └── terraform/
+├── docs/                # Documentation
+│   ├── api-docs/
+│   ├── architecture/
+│   └── user-guides/
+└── assets/
+    └── images/         # Logos and marketing assets
 ```
 
-## Quick Start
+---
 
-```bash
-# API Gateway (required for search)
-cd backend/api-gateway && npm install && node index.js
+This project is under active development. See the `docs/` directory for architecture, API usage, and user guides.
 
-# Web App
-cd frontend/web-app && npm install && npm start
-```
+---
 
-Each backend service can be started independently:
+## 📜 License & Copyright
 
-```bash
-cd backend/content-aggregator && npm install && node index.js   # port 4001
-cd backend/user-service        && npm install && node index.js   # port 4002
-cd backend/sync-service        && npm install && node index.js   # port 4003
-cd backend/recommendation-engine && npm install && node index.js # port 4000
-```
+**Copyright © 2026 BlackRoad OS, Inc. All Rights Reserved.**
 
-## API
+**CEO:** Alexa Amundson
 
-### API Gateway (port 4000)
+**PROPRIETARY AND CONFIDENTIAL**
 
-```
-GET  /                               # Health check
-GET  /search?q=<query>               # Search content by title, genre, or platform
-GET  /search?genre=<genre>           # Filter by genre
-GET  /search?platform=<platform>     # Filter by platform
-```
+This software is the proprietary property of BlackRoad OS, Inc. and is **NOT for commercial resale**.
 
-### Content Aggregator (port 4001)
+### ⚠️ Usage Restrictions:
+- ✅ **Permitted:** Testing, evaluation, and educational purposes
+- ❌ **Prohibited:** Commercial use, resale, or redistribution without written permission
 
-```
-GET  /catalog                        # Full streaming catalog with platform/genre lists
-GET  /catalog/:id                    # Single title by ID
-```
+### 🏢 Enterprise Scale:
+Designed to support:
+- 30,000 AI Agents
+- 30,000 Human Employees
+- One Operator: Alexa Amundson (CEO)
 
-### User Service (port 4002)
+### 📧 Contact:
+For commercial licensing inquiries:
+- **Email:** blackroad.systems@gmail.com
+- **Organization:** BlackRoad OS, Inc.
 
-```
-POST /register                       # Create account { username, email, password }
-POST /login                          # Authenticate   { username, password } → token
-GET  /profile                        # Get profile    (Authorization: Bearer <token>)
-POST /logout                         # Invalidate token
-```
-
-### Sync Service (port 4003)
-
-```
-POST /progress/:userId/:contentId    # Save watch progress { progressSeconds, durationSeconds }
-GET  /progress/:userId               # All progress for a user
-GET  /progress/:userId/:contentId    # Progress for a specific title
-```
-
-### Recommendation Engine (port 4000)
-
-```
-GET  /recommendations                # Personalised content recommendations
-```
-
-## Running Tests
-
-```bash
-# API Gateway
-cd backend/api-gateway && npm test
-
-# Web App
-cd frontend/web-app && npm test
-```
-
-## Status
-
-- ✅ **API Gateway** — search endpoint returns real catalog results filtered by title, genre, or platform
-- ✅ **Content Aggregator** — unified catalog API across platforms
-- ✅ **User Service** — register, login, profile, and logout endpoints
-- ✅ **Sync Service** — save and retrieve watch progress per user/title
-- ✅ **React Frontend** — search UI with live results from the API Gateway
-- ⚙️  **Recommendation Engine** — returns curated recommendations (static dataset)
-
-## License
-
-Copyright 2026 BlackRoad OS, Inc. All rights reserved.
-
-## Related Projects
-
-| Project | Description |
-|---------|-------------|
-| [BlackRoad App Store](https://github.com/blackboxprogramming/blackroad-app-store) | Application marketplace |
-| [BlackRoad Apps](https://github.com/blackboxprogramming/blackroad-apps) | Web application suite |
-| [BlackRoad Web](https://github.com/blackboxprogramming/blackroad-web) | Web platform and services |
+See [LICENSE](LICENSE) for complete terms.

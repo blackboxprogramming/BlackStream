@@ -1,169 +1,34 @@
-/* Brand colors from BlackRoad brand system */
-:root {
-  --amber: #F5A623;
-  --hot-pink: #FF1D6C;
-  --electric-blue: #2979FF;
-  --violet: #9C27B0;
-  --black: #000000;
-  --white: #FFFFFF;
-
-  /* Golden Ratio spacing (φ = 1.618) */
-  --space-xs: 8px;
-  --space-sm: 13px;
-  --space-md: 21px;
-  --space-lg: 34px;
-  --space-xl: 55px;
-  --space-2xl: 89px;
-}
-
 .App {
   text-align: center;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: #000;
+  color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-  line-height: 1.618;
+  justify-content: center;
 }
 
 .App-header {
-  padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .logo-text {
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: 700;
-  background: linear-gradient(
-    135deg,
-    var(--amber) 0%,
-    var(--hot-pink) 38.2%,
-    var(--violet) 61.8%,
-    var(--electric-blue) 100%
-  );
+  background: linear-gradient(45deg, #F8AA1B, #E91E63, #00B4DB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 var(--space-xs) 0;
+  margin-bottom: 0.5rem;
 }
 
-.tagline {
-  color: #aaa;
+h1 {
+  margin: 0.5rem 0;
+}
+
+p {
+  margin-top: 0.25rem;
   font-size: 1rem;
-  margin: 0;
-}
-
-.App-main {
-  width: 100%;
-  max-width: 800px;
-  padding: 0 var(--space-lg) var(--space-2xl);
-}
-
-/* Search form */
-.search-form {
-  display: flex;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-}
-
-.search-input {
-  flex: 1;
-  padding: var(--space-sm) var(--space-md);
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #111;
-  color: var(--white);
-  font-size: 1rem;
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.search-input:focus {
-  border-color: var(--hot-pink);
-}
-
-.search-button {
-  padding: var(--space-sm) var(--space-md);
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--hot-pink), var(--violet));
-  color: var(--white);
-  font-size: 1rem;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-
-.search-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.search-button:hover:not(:disabled) {
-  opacity: 0.85;
-}
-
-/* Results */
-.results-count {
-  color: #aaa;
-  font-size: 0.9rem;
-  margin-bottom: var(--space-md);
-}
-
-.no-results {
-  color: #666;
-}
-
-.error-message {
-  color: var(--hot-pink);
-  font-size: 0.9rem;
-}
-
-.results-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: var(--space-sm);
-}
-
-.result-card {
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 8px;
-  padding: var(--space-md);
-  text-align: left;
-  transition: border-color 0.2s;
-}
-
-.result-card:hover {
-  border-color: #444;
-}
-
-.result-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-}
-
-.result-meta {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-  font-size: 0.85rem;
   color: #aaa;
 }
-
-.result-platform {
-  color: var(--amber);
-  font-weight: 500;
-}
-
-.result-rating {
-  color: #ffd700;
-}
-
